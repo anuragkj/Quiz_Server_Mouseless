@@ -16,6 +16,9 @@
         <div><b>Answer</b> : {{ task.correct }}</div>
         {% endif %}
         <p class="article-content">{{ object.formatted_markdown|safe }}</p>
+        {% if form.instance.value != form.instance.task.correct and not user.is_superuser%}
+        <a href="{% url 'show-hint' task.id %}">Show Hint...(Point penalty: <b>{{ task.hint_points }}</b> everytime you take this hint, so be careful!!)</a>
+        {% endif %}
       </div>
     </article>
   </div>
