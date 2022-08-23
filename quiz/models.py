@@ -1,3 +1,4 @@
+from email.policy import default
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import F, Sum, Max
@@ -11,6 +12,8 @@ class Task(models.Model):
     text = MarkdownxField()
     points = models.IntegerField()
     correct = models.CharField(max_length=256)
+    hint = models.CharField(max_length=256, default='No hint!!')
+    hint_points = models.IntegerField(default=0)
 
     @property
     def formatted_markdown(self):
@@ -23,12 +26,13 @@ class Task(models.Model):
 class Card(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     start = models.DateTimeField(auto_now_add=True, auto_now=False)
-
+    penalty_points = models.IntegerField(default=0)
     @property
     def score(self):
         score = self.answer_set.filter(value=F('task__correct')).aggregate(score=Sum('task__points')).get('score')
         if score is None:
             score = 0
+        score -= self.penalty_points
         return score
 
     @property
