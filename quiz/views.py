@@ -115,3 +115,9 @@ def leaderboard(request):
     }
     
     return render(request, 'quiz/leaderboard.html', context=context)
+
+@login_required(login_url='login')
+def showHint(request, pk):
+    task = Task.objects.get(id=pk)
+    hint = task.hint
+    return render(request, 'quiz/hint.html', {'hint':hint})
