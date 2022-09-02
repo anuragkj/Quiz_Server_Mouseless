@@ -1,4 +1,5 @@
 django
+django_on_heroku
 django-crispy-forms
 django-phonenumber-field
 phonenumbers
