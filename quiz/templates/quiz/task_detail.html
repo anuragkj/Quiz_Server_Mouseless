@@ -3,10 +3,12 @@
 {% block content %}
 <h2 class="mb-4">{{ object.name }}</h2>
 <div class="text-info">Points : {{ object.points }}</div>
+{% if not user.is_superuser %}
 {% if form.instance.value == form.instance.task.correct %}
 <div class="text-success mb-4"> Status : Complete </div>
 {% else %}
 <div class="text-danger mb-4"> Status : Incomplete </div>
+{% endif %}
 {% endif %}
 <div class="row">
   <div class="col">
