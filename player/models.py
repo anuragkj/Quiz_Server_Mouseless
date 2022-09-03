@@ -12,8 +12,6 @@ class Player(models.Model):
     institute_id = models.CharField(max_length=20, unique=True, db_index=True, primary_key=True)
     contact = PhoneNumberField()
 
-
-# Commeneted the next lines as they were creating issues in deployment as user has no primary key
 # @receiver(pre_save, sender=User)
 # def check_limits(sender, instance, **kwargs):
 #     if instance.player_set.count() > 2:

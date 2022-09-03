@@ -44,7 +44,7 @@ class TaskListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         if not check:
             messages.warning(self.request, f'Please enter the player details before attempting the challenge')
         return check
-    
+
     def handle_no_permission(self):
         return redirect('player-list')
 
@@ -55,7 +55,7 @@ class TaskListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         context['card'] = card
 
         return context
-    
+
     def get_queryset(self):
         return Task.objects.all().order_by('points')
 
@@ -73,14 +73,14 @@ class TaskDetailView(LoginRequiredMixin, UserPassesTestMixin, FormMixin, DetailV
         if not check:
             messages.warning(self.request, f'Please enter the player details before attempting the challenge')
         return check
-    
+
     def handle_no_permission(self):
         return redirect('player-list')
 
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
 
-    
+
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         card = self.request.user.card
@@ -98,10 +98,10 @@ class TaskDetailView(LoginRequiredMixin, UserPassesTestMixin, FormMixin, DetailV
         answer , _ = Answer.objects.get_or_create(card=card, task=self.object)
         context['form'] = AnswerForm(instance=answer)
         return context
-    
+
     def form_invalid(self, form):
         return super().form_invalid(form)
-    
+
     def form_valid(self, form):
         form.instance.save()
         return super(TaskDetailView, self).form_valid(form)
@@ -114,7 +114,7 @@ def leaderboard(request):
     context= {
         'leaderboard' : leaderboard
     }
-    
+
     return render(request, 'quiz/leaderboard.html', context=context)
 
 @login_required(login_url='login')

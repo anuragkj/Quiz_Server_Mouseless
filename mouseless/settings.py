@@ -15,7 +15,8 @@ SECRET_KEY = '^yw=ffn7=i73af9o50%8byyq7qp3^hjj1^24oh^j2fjej1zm2_'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    # 'acm-mouseless.herokuapp.com'
+    '*',
+    'anurag.pythonanywhere.com',
     'localhost',
     '172.16.100.14',
     '172.16.100.15',
@@ -123,6 +124,3 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 STATIC_URL = '/static/'
 
-
-# import django_on_heroku
-# django_on_heroku.settings(locals())
