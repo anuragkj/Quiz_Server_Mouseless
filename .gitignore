@@ -1,4 +1,3 @@
 __pycache__
-*.sqlite3
 tasks/
 secret.key
