@@ -15,6 +15,7 @@ SECRET_KEY = '^yw=ffn7=i73af9o50%8byyq7qp3^hjj1^24oh^j2fjej1zm2_'
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    'acm-mouseless.herokuapp.com'
     'localhost',
     '172.16.100.14',
     '172.16.100.15',

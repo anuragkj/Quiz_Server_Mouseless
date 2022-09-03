@@ -1,1 +1,1 @@
-web: gunicorn mouseless.wsgi
+web: gunicorn mouseless.wsgi  --log-file -
